@@ -56,10 +56,16 @@ class SignUpScreen extends StatelessWidget {
                 width: double.infinity,
                 height: 48,
                 child: ElevatedButton(
-                  onPressed: () {},
-                  child: Text('Sign Up',
-                  style: TextStyle(color: Colors.white,
-                  fontSize: 16),),
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => BottomNavbar()),
+                    );
+                  },
+                  child: Text(
+                    'Sign Up',
+                    style: TextStyle(color: Colors.white, fontSize: 16),
+                  ),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color(0xFF00796B), // Teal color
                   ),

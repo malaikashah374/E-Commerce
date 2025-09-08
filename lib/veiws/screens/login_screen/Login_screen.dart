@@ -115,13 +115,16 @@ class _LoginScreenState extends State<LoginScreen> {
                         borderRadius: BorderRadius.circular(8),
                       ),
                     ),
-                    onPressed: () {
+                    onPressed: () { 
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>SignUpScreen()));
+                        Navigator.pushNamed(context, '/signup');
                       // TODO: Navigate to Home screen
                     },
                     child: Text(
                       "Sign In",
                       style: TextStyle(fontSize: 16,
-                      color: Colors.white),
+                      color: Colors.white,
+                      ),
                      
                     ),
                      

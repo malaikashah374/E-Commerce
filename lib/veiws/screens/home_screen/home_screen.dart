@@ -1,5 +1,8 @@
 import 'package:e_commerce/veiws/screens/detail_screen/detail_screen.dart';
+import 'package:e_commerce/veiws/screens/notification_screen/notification_screen.dart';
+import 'package:e_commerce/veiws/screens/setting_screen/setting_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 /// -------------------------------
 /// HOME SCREEN (your UI)
@@ -14,87 +17,10 @@ class _HomeScreenState extends State<HomeScreen> {
   int _navIndex = 0;
   int _selectedCategory = 0;
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-
-      // BOTTOM NAV — PNG icons from your Figma
-      // bottomNavigationBar: BottomNavigationBar(
-      //   currentIndex: _navIndex,
-      //   onTap: _goToTab,
-      //   type: BottomNavigationBarType.fixed,
-      //   showUnselectedLabels: true,
-      //   selectedItemColor: const Color(0xFF00897B),
-      //   unselectedItemColor: Colors.grey,
-      //   items: [
-      //     BottomNavigationBarItem(
-      //       icon: Image.asset(
-      //         "assets/images/bottam_nav_(5).png",
-      //         height: 24,
-      //         color: Colors.grey,
-      //       ),
-      //       activeIcon: Image.asset(
-      //         "assets/images/bottam_nav_(5).png",
-      //         height: 24,
-      //         color: const Color(0xFF00897B),
-      //       ),
-      //       label: "Home",
-      //     ),
-      //     BottomNavigationBarItem(
-      //       icon: Image.asset(
-      //         "assets/images/bottam_nav_(6).png",
-      //         height: 24,
-      //         color: Colors.grey,
-      //       ),
-      //       activeIcon: Image.asset(
-      //         "assets/images/bottam_nav_(6).png",
-      //         height: 24,
-      //         color: const Color(0xFF00897B),
-      //       ),
-      //       label: "Favourite",
-      //     ),
-      //     // Center action (teal circle)
-      //     BottomNavigationBarItem(
-      //       icon: _centerTealIcon(
-      //         "assets/images/camera.zip", // your asset
-      //         selected: _navIndex == 2,
-      //       ),
-      //       activeIcon: _centerTealIcon(
-      //         "assets/images/camera.zip",
-      //         selected: true,
-      //       ),
-      //       label: "",
-      //     ),
-      //     BottomNavigationBarItem(
-      //       icon: Image.asset(
-      //         "assets/images/bottam_nav_(4).png",
-      //         height: 24,
-      //         color: Colors.grey,
-      //       ),
-      //       activeIcon: Image.asset(
-      //         "assets/images/bottam_nav_(4).png",
-      //         height: 24,
-      //         color: const Color(0xFF00897B),
-      //       ),
-      //       label: "Shopping",
-      //     ),
-      //     BottomNavigationBarItem(
-      //       icon: Image.asset(
-      //         "assets/images/bottam_nav_(3).png",
-      //         height: 24,
-      //         color: Colors.grey,
-      //       ),
-      //       activeIcon: Image.asset(
-      //         "assets/images/bottam_nav_(3).png",
-      //         height: 24,
-      //         color: const Color(0xFF00897B),
-      //       ),
-      //       label: "Profile",
-      //     ),
-      //   ],
-      // ),
 
       body: SafeArea(
         child: SingleChildScrollView(
@@ -136,9 +62,35 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   Row(
                     children: [
-                      _roundIconButton("assets/images/bell icon.png"),
-                      const SizedBox(width: 8),
-                      _roundIconButton("assets/images/ic_menu.png"),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => NotificationsScreen(),
+                            ),
+                          );
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 16.0),
+                          child: Icon(Icons.notification_add_outlined),
+                        ),
+                      ),
+
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => SettingsScreen(),
+                            ),
+                          );
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 12.0),
+                          child: Icon(Icons.settings_outlined),
+                        ),
+                      ),
                     ],
                   ),
                 ],
@@ -165,9 +117,12 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(height: 20),
 
               // SPECIAL OFFERS
-              const Text(
+              Text(
                 "Special Offers",
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+                style: GoogleFonts.aboreto(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w700,
+                ),
               ),
               const SizedBox(height: 12),
               SizedBox(
@@ -209,9 +164,10 @@ class _HomeScreenState extends State<HomeScreen> {
                             vertical: 10,
                           ),
                           decoration: BoxDecoration(
-                            color: selected
-                                ? const Color(0xFF00897B)
-                                : Colors.grey.shade100,
+                            color:
+                                selected
+                                    ? const Color(0xFF00897B)
+                                    : Colors.grey.shade100,
                             borderRadius: BorderRadius.circular(24),
                           ),
                           child: Row(
@@ -219,18 +175,20 @@ class _HomeScreenState extends State<HomeScreen> {
                               Image.asset(
                                 _categories[i].icon,
                                 height: 18,
-                                color: selected
-                                    ? Colors.white
-                                    : Colors.grey.shade700,
+                                color:
+                                    selected
+                                        ? Colors.white
+                                        : Colors.grey.shade700,
                               ),
                               const SizedBox(width: 8),
                               Text(
                                 _categories[i].label,
                                 style: TextStyle(
                                   fontSize: 13,
-                                  color: selected
-                                      ? Colors.white
-                                      : Colors.grey.shade800,
+                                  color:
+                                      selected
+                                          ? Colors.white
+                                          : Colors.grey.shade800,
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
@@ -259,12 +217,14 @@ class _HomeScreenState extends State<HomeScreen> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (_) => DetailScreen(
-                              image: "assets/images/greenish_grey chair.png",
-                              title: "Fuji Arm Chair",
-                              brand: "Hans J. Wegner",
-                              price: "\$9.99",
-                            ),
+                            builder:
+                                (_) => DetailScreen(
+                                  image:
+                                      "assets/images/greenish_grey chair.png",
+                                  title: "Fuji Arm Chair",
+                                  brand: "Hans J. Wegner",
+                                  price: "\$9.99",
+                                ),
                           ),
                         );
                       },
@@ -296,7 +256,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   scrollDirection: Axis.horizontal,
                   children: const [
                     _ProductSmall(
-                      image: "assets/images/home_swoon lounge.png",
+                      image: "assets/images/home_swoon_lounge.png",
                       title: "Swoon Lounge",
                       brand: "Fredericia",
                       price: "\$136.79",
@@ -445,13 +405,13 @@ class _OfferCard extends StatelessWidget {
   }
 
   Widget _dot(bool active) => Container(
-        height: 8,
-        width: active ? 16 : 8,
-        decoration: BoxDecoration(
-          color: active ? Colors.white : Colors.white54,
-          borderRadius: BorderRadius.circular(12),
-        ),
-      );
+    height: 8,
+    width: active ? 16 : 8,
+    decoration: BoxDecoration(
+      color: active ? Colors.white : Colors.white54,
+      borderRadius: BorderRadius.circular(12),
+    ),
+  );
 }
 
 class _ProductBig extends StatelessWidget {
@@ -576,8 +536,7 @@ class _ProductSmall extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(12),
-            child:
-                Image.asset(image, height: 70, width: 70, fit: BoxFit.cover),
+            child: Image.asset(image, height: 70, width: 70, fit: BoxFit.cover),
           ),
           const SizedBox(width: 12),
           Expanded(
@@ -593,8 +552,7 @@ class _ProductSmall extends StatelessWidget {
                 const SizedBox(height: 4),
                 Text(
                   brand,
-                  style:
-                      TextStyle(color: Colors.grey.shade600, fontSize: 12),
+                  style: TextStyle(color: Colors.grey.shade600, fontSize: 12),
                 ),
                 const SizedBox(height: 8),
                 Container(
@@ -621,21 +579,6 @@ class _ProductSmall extends StatelessWidget {
       ),
     );
   }
-}
-
-// small rounded icon button used in top-right
-Widget _roundIconButton(String assetPath) {
-  return Container(
-    height: 38,
-    width: 38,
-    decoration: BoxDecoration(
-      color: Colors.grey.shade100,
-      shape: BoxShape.circle,
-    ),
-    child: Center(
-      child: Image.asset(assetPath, height: 18, color: Colors.black87),
-    ),
-  );
 }
 
 Widget _sectionHeader(String title) {
@@ -701,7 +644,9 @@ class DetailScreen extends StatelessWidget {
                   child: Text(
                     "$title\nModern Style",
                     style: const TextStyle(
-                        fontSize: 20, fontWeight: FontWeight.bold),
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
                 Text(
@@ -727,22 +672,19 @@ class DetailScreen extends StatelessWidget {
                 const Spacer(),
                 CircleAvatar(
                   radius: 12,
-                  backgroundImage:
-                      const AssetImage("assets/images/user1.png"),
+                  backgroundImage: const AssetImage("assets/images/user1.png"),
                   backgroundColor: Colors.grey.shade200,
                 ),
                 const SizedBox(width: 4),
                 CircleAvatar(
                   radius: 12,
-                  backgroundImage:
-                      const AssetImage("assets/images/user2.png"),
+                  backgroundImage: const AssetImage("assets/images/user2.png"),
                   backgroundColor: Colors.grey.shade200,
                 ),
                 const SizedBox(width: 4),
                 CircleAvatar(
                   radius: 12,
-                  backgroundImage:
-                      const AssetImage("assets/images/user3.png"),
+                  backgroundImage: const AssetImage("assets/images/user3.png"),
                   backgroundColor: Colors.grey.shade200,
                 ),
               ],
@@ -772,8 +714,10 @@ class DetailScreen extends StatelessWidget {
             Row(
               children: [
                 Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 8,
+                  ),
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.grey.shade300),
                     borderRadius: BorderRadius.circular(12),
@@ -792,8 +736,10 @@ class DetailScreen extends StatelessWidget {
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF00897B),
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 24,
+                      vertical: 14,
+                    ),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
@@ -802,7 +748,7 @@ class DetailScreen extends StatelessWidget {
                   child: const Text("Add To Cart"),
                 ),
               ],
-            )
+            ),
           ],
         ),
       ),
@@ -810,9 +756,7 @@ class DetailScreen extends StatelessWidget {
   }
 }
 
-
-
 Widget _simpleScaffold(String title) => Scaffold(
-      appBar: AppBar(title: Text(title)),
-      body: Center(child: Text(title)),
-    );
+  appBar: AppBar(title: Text(title)),
+  body: Center(child: Text(title)),
+);

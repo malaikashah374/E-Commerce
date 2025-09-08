@@ -1,3 +1,4 @@
+import 'package:e_commerce/veiws/screens/edit_profile_screen/edit_profile_screen.dart';
 import 'package:flutter/material.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -7,17 +8,18 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black),
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () {
             Navigator.pop(context);
           },
         ),
         title: const Text(
           "Profile",
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: Color (0xFF00897B),
         elevation: 0,
       ),
       body: Column(
@@ -48,8 +50,8 @@ class ProfileScreen extends StatelessWidget {
                 _buildListTile(
                   context,
                   icon: Icons.person_outline,
-                  title: "Profile",
-                  screen: const DummyScreen(title: "Profile"),
+                  title: " Edit Profile",
+                  screen: const EditProfileScreen (),
                 ),
                 _buildListTile(
                   context,
