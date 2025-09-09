@@ -1,3 +1,4 @@
+import 'package:e_commerce/veiws/screens/checkout_screen/checkout_screen.dart';
 import 'package:e_commerce/veiws/screens/detail_screen/detail_screen.dart';
 import 'package:e_commerce/veiws/screens/fav_Screen/fav_screen.dart';
 import 'package:e_commerce/veiws/screens/home_screen/home_screen.dart';
@@ -27,10 +28,25 @@ class _BottomNavbarState extends State<BottomNavbar> {
       _selectedIndex = index;
     });
   }
-@override
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => UploadProductScreen()),
+          );
+        },
+        backgroundColor: Colors.blue,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
+        child: Icon(Icons.add, color: Colors.white),
+      ),
+
       body: _screens[_selectedIndex],
+
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
@@ -39,7 +55,7 @@ class _BottomNavbarState extends State<BottomNavbar> {
         unselectedItemColor: Colors.grey,
         items: [
           BottomNavigationBarItem(
-             icon: Image.asset(
+            icon: Image.asset(
               "assets/images/bottam_nav_(5).png",
               height: 24,
               color: Colors.grey,
@@ -52,7 +68,7 @@ class _BottomNavbarState extends State<BottomNavbar> {
             label: "Home",
           ),
           BottomNavigationBarItem(
-             icon: Image.asset(
+            icon: Image.asset(
               "assets/images/bottam_nav_(6).png",
               height: 24,
               color: Colors.grey,
@@ -65,7 +81,7 @@ class _BottomNavbarState extends State<BottomNavbar> {
             label: "Favourite",
           ),
           BottomNavigationBarItem(
-             icon: Image.asset(
+            icon: Image.asset(
               "assets/images/bottam_nav_(4).png",
               height: 24,
               color: Colors.grey,
@@ -78,7 +94,7 @@ class _BottomNavbarState extends State<BottomNavbar> {
             label: "Shopping",
           ),
           BottomNavigationBarItem(
-              icon: Image.asset(
+            icon: Image.asset(
               "assets/images/bottam_nav_(3).png",
               height: 24,
               color: Colors.grey,
@@ -89,8 +105,9 @@ class _BottomNavbarState extends State<BottomNavbar> {
               color: const Color(0xFF00897B),
             ),
             label: "Profile",
-         ),
+          ),
         ],
-    ),);
+      ),
+    );
   }
-}   
+}
